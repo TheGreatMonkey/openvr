@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 2.8)
 project(OpenVRSDK)
 
 # Setup some options.
-option(BUILD_SHARED "Builds the library as shared library" OFF)
+option(BUILD_SHARED "Builds the library as shared library" ON)
 option(BUILD_FRAMEWORK "Builds the library as an apple Framework" OFF)
 option(BUILD_UNIVERSAL "Builds the shared or framework as a universal (fat, 32- & 64-bit) binary" ON)
 option(BUILD_OSX_I386 "Builds the shared or framework as a 32-bit binary, even on a 64-bit platform" OFF)
@@ -48,9 +48,9 @@ elseif(APPLE)
 endif()
 
 # Set output folder for static and shared libraries
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin/${PLATFORM_NAME}${PROCESSOR_ARCH})
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin/${PLATFORM_NAME}${PROCESSOR_ARCH})
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin/${PLATFORM_NAME}${PROCESSOR_ARCH})
+# set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin/${PLATFORM_NAME}${PROCESSOR_ARCH})
+# set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin/${PLATFORM_NAME}${PROCESSOR_ARCH})
+# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin/${PLATFORM_NAME}${PROCESSOR_ARCH})
 
 # Enable some properties.
 if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_C_COMPILER_ID MATCHES "Clang")
@@ -72,5 +72,5 @@ if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_C_COMPILER_ID MATCHES "Clang")
 		endif()
 	endif()
 endif()
-
+set(OpenVR_ROOT ${CMAKE_CURRENT_SOURCE_DIR})
 add_subdirectory(src)
