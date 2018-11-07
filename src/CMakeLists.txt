@@ -22,7 +22,7 @@ elseif(WIN32)
 endif()
 
 # Add include folders.
-include_directories(${CMAKE_SOURCE_DIR}/src ${CMAKE_SOURCE_DIR}/headers ${CMAKE_SOURCE_DIR}/src/vrcommon)
+include_directories(${OpenVR_ROOT}/src ${OpenVR_ROOT}/headers ${OpenVR_ROOT}/src/vrcommon)
 
 if(USE_CUSTOM_LIBCXX)
 	link_directories(
@@ -65,22 +65,22 @@ elseif(BUILD_FRAMEWORK)
 	set( LIBNAME "OpenVR" )
 	add_library( ${LIBNAME} 
             SHARED ${SOURCE_FILES}
-            ${CMAKE_SOURCE_DIR}/headers/openvr.h
-            ${CMAKE_SOURCE_DIR}/headers/openvr_api.cs
-            ${CMAKE_SOURCE_DIR}/headers/openvr_api.json
-            ${CMAKE_SOURCE_DIR}/headers/openvr_capi.h
-            ${CMAKE_SOURCE_DIR}/headers/openvr_driver.h
+            ${OpenVR_ROOT}/headers/openvr.h
+            ${OpenVR_ROOT}/headers/openvr_api.cs
+            ${OpenVR_ROOT}/headers/openvr_api.json
+            ${OpenVR_ROOT}/headers/openvr_capi.h
+            ${OpenVR_ROOT}/headers/openvr_driver.h
 	)
 	set_target_properties(OpenVR PROPERTIES
 		FRAMEWORK TRUE
 		FRAMEWORK_VERSION A
 		MACOSX_FRAMEWORK_IDENTIFIER com.valvesoftware.OpenVR.framework
-		MACOSX_FRAMEWORK_INFO_PLIST ${CMAKE_SOURCE_DIR}/src/Info.plist
+		MACOSX_FRAMEWORK_INFO_PLIST ${OpenVR_ROOT}/src/Info.plist
 		# "current version" in semantic format in Mach-O binary file
 		VERSION 1.0.6
 		# "compatibility version" in semantic format in Mach-O binary file
 		SOVERSION 1.0.0
-		PUBLIC_HEADER "${CMAKE_SOURCE_DIR}/headers/openvr.h;${CMAKE_SOURCE_DIR}/headers/openvr_api.cs;${CMAKE_SOURCE_DIR}/headers/openvr_api.json;${CMAKE_SOURCE_DIR}/headers/openvr_capi.h;${CMAKE_SOURCE_DIR}/headers/openvr_driver.h"
+		PUBLIC_HEADER "${OpenVR_ROOT}/headers/openvr.h;${OpenVR_ROOT}/headers/openvr_api.cs;${OpenVR_ROOT}/headers/openvr_api.json;${OpenVR_ROOT}/headers/openvr_capi.h;${OpenVR_ROOT}/headers/openvr_driver.h"
 		LINKER_LANGUAGE CXX
 	)
 else()
